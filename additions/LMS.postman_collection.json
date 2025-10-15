@@ -1,0 +1,684 @@
+{
+	"info": {
+		"_postman_id": "d2c841af-dc08-43bb-896d-d1c739c66046",
+		"name": "LMS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45057986",
+		"_collection_link": "https://tarunkumar-707370.postman.co/workspace/Tution-Workspace~96c794c1-c898-400b-89df-76b9827ebbf6/collection/45057986-d2c841af-dc08-43bb-896d-d1c739c66046?action=share&source=collection_link&creator=45057986"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "x-api-key",
+								"value": "1234",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"bright i_1 st gra_759\",\n    \"password\":\"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_local}}/login",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "x-api-key",
+										"value": "1234",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\":\"bright i_1 st gra_759\",\n    \"password\":\"12345678\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url_local}}/login",
+									"host": [
+										"{{base_url_local}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.25"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Oct 2025 07:34:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "phpdebugbar-id",
+									"value": "01K71BWQHGDHS73GZDSSJ1JA7K"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"status\": \"login\",\n    \"message\": \"Login\",\n    \"data\": {\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2RldmVsb3BtZW50L2xvZ2luIiwiaWF0IjoxNzU5OTA4ODc5LCJuYmYiOjE3NTk5MDg4NzksImp0aSI6Imhma1Z2bVJZbjAxZEFlUEIiLCJzdWIiOiIxMDY1IiwicHJ2IjoiNDBhOTdmY2EyZDQyNGU3NzhhMDdhMGEyZjEyZGM1MTdhODVjYmRjMSJ9.1AifpSBTjC9IxTRu-i6fdj0x52Ggutjy5-AO8h_fmLs\",\n        \"user_id\": 1065,\n        \"profile_completion\": [\n            \"full_name\"\n        ]\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Textbook",
+			"item": [
+				{
+					"name": "student",
+					"item": [
+						{
+							"name": "Student home api",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "1234",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_local}}/textbook/students",
+									"host": [
+										"{{base_url_local}}"
+									],
+									"path": [
+										"textbook",
+										"students"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Student home api",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "1234",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url_local}}/textbook/students",
+											"host": [
+												"{{base_url_local}}"
+											],
+											"path": [
+												"textbook",
+												"students"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.25"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 08 Oct 2025 13:12:56 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "phpdebugbar-id",
+											"value": "01K71Z84TEHSQRP38N2529W21P"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"status\": \"retrieved\",\n    \"message\": \"data retrieved successfully\",\n    \"data\": {\n        \"textbooks\": [\n            {\n                \"id\": 1,\n                \"title\": \"addition and subtraction\",\n                \"price\": \"22.00\",\n                \"subject_id\": 1,\n                \"standard_id\": 1,\n                \"standard_name\": \"grade 1\",\n                \"description\": \"descriptipn\",\n                \"image_cover\": \"http://127.0.0.1:8000/storage/textbooks/covers/13lBBoDnW8KXbZGMaHkdgmoZiTYISSpNbDShr1v3.png\",\n                \"thumbnail\": \"http://127.0.0.1:8000/storage/textbooks/thumbnails/bA5QjTmTNw4ZJERX9g3hkKVqwjlTzSc6nwz2S7OY.png\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Get chapter by textbook",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "1234",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_local}}/textbook/students/chapters?textbook_id=1",
+									"host": [
+										"{{base_url_local}}"
+									],
+									"path": [
+										"textbook",
+										"students",
+										"chapters"
+									],
+									"query": [
+										{
+											"key": "textbook_id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "1234",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url_local}}/textbook/students/chapters?textbook_id=1",
+											"host": [
+												"{{base_url_local}}"
+											],
+											"path": [
+												"textbook",
+												"students",
+												"chapters"
+											],
+											"query": [
+												{
+													"key": "textbook_id",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.25"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 08 Oct 2025 13:16:55 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "phpdebugbar-id",
+											"value": "01K71ZFE0EP6ZPJPJ8WYNQD7QA"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"status\": \"retrieved\",\n    \"message\": \"data retrieved successfully\",\n    \"data\": {\n        \"textbook_id\": 1,\n        \"textbook_title\": \"addition and subtraction\",\n        \"textbook_description\": \"descriptipn\",\n        \"image_cover\": \"http://127.0.0.1:8000/storage/textbooks/covers/13lBBoDnW8KXbZGMaHkdgmoZiTYISSpNbDShr1v3.png\",\n        \"thumbnail\": \"http://127.0.0.1:8000/storage/textbooks/thumbnails/bA5QjTmTNw4ZJERX9g3hkKVqwjlTzSc6nwz2S7OY.png\",\n        \"chapters\": [\n            {\n                \"id\": 1,\n                \"title\": \"Addition and subscrition chapter\",\n                \"description\": null,\n                \"media_count\": 2,\n                \"chapter_media\": [\n                    {\n                        \"id\": 1,\n                        \"download_allowed\": true,\n                        \"description\": \"description\",\n                        \"images\": [],\n                        \"pdfs\": [],\n                        \"videos\": [],\n                        \"video_durations\": [],\n                        \"has_images\": false,\n                        \"has_pdfs\": false,\n                        \"has_videos\": false\n                    },\n                    {\n                        \"id\": 2,\n                        \"download_allowed\": false,\n                        \"description\": \"description jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvbdescription jcbksdcjhsdbcjhsdbjcsbdjcbsdjvbfjvb\",\n                        \"images\": [\n                            \"http://127.0.0.1:8000/storage/chapter-media/images/qAT5yxPXU9HEjGY61Eyv96MzqiltKzAFmUYec826.png\",\n                            \"http://127.0.0.1:8000/storage/chapter-media/images/OKoT9kB3jJDvfBh0TGcI49GXnxHIk5eKHV0OH0d8.png\",\n                            \"http://127.0.0.1:8000/storage/chapter-media/images/x3HJiAlbh8q9vJKi6NGeYgXx623AULCWkeedSefZ.png\",\n                            \"http://127.0.0.1:8000/storage/chapter-media/images/yqKiOfpg32HQ2MqzE1YMLSrZH3Be6JrukaHnw2vi.png\"\n                        ],\n                        \"pdfs\": [\n                            \"http://127.0.0.1:8000/storage/chapter-media/pdfs/167mj7fZOQTQuihmM7X5sTF3Lmq7K7IIxvvzyMOX.pdf\"\n                        ],\n                        \"videos\": [\n                            \"http://127.0.0.1:8000/storage/chapter-media/videos/RYAiZUWYWslDl2ECZC16if3Vzxus2RjbmHlijDbM.mp4\",\n                            \"http://127.0.0.1:8000/storage/chapter-media/videos/EkjaYs0qXEh59OJUCF2z96FgXV8vBOETwkZRjoGV.mp4\"\n                        ],\n                        \"video_durations\": [\n                            \"3s\",\n                            \"31s\"\n                        ],\n                        \"has_images\": true,\n                        \"has_pdfs\": true,\n                        \"has_videos\": true\n                    }\n                ]\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "get subjects by student auth",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "1234",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_local}}/textbook/students/subjects",
+									"host": [
+										"{{base_url_local}}"
+									],
+									"path": [
+										"textbook",
+										"students",
+										"subjects"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "1234",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url_local}}/textbook/subjects",
+											"host": [
+												"{{base_url_local}}"
+											],
+											"path": [
+												"textbook",
+												"subjects"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.3.25"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 08 Oct 2025 13:17:55 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "phpdebugbar-id",
+											"value": "01K71ZH8578APFCFTDE62RV7V8"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"status\": \"retrieved\",\n    \"message\": \"data retrieved successfully\",\n    \"data\": {\n        \"subjects\": [\n            {\n                \"id\": 1,\n                \"title\": \"english\"\n            }\n        ]\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Test",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "1234",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url_local}}/textbook",
+							"host": [
+								"{{base_url_local}}"
+							],
+							"path": [
+								"textbook"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "1234",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url_local}}/textbook",
+									"host": [
+										"{{base_url_local}}"
+									],
+									"path": [
+										"textbook"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.25"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 08 Oct 2025 08:29:24 GMT"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "phpdebugbar-id",
+									"value": "01K71F0Z7X3SCGXWSN2QS4Y8Z6"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "test textbook"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{auth_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Test",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "1234",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url_local}}/",
+					"host": [
+						"{{base_url_local}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
