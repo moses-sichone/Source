@@ -4,7 +4,7 @@ import 'package:webinar/app/models/textbook_model.dart';
 import 'package:webinar/app/services/textbook_service/textbook_auth_service.dart';
 
 class TextbookService {
-  static const String _baseUrl = 'http://127.0.0.1:8000';
+  static const String _baseUrl = 'https://vertxlearning.com';
   static const String _apiPrefix = '/api/development';
 
   static Future<List<TextbookModel>> getTextbooks({int? subjectId}) async {
@@ -24,7 +24,7 @@ class TextbookService {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         
-        if (responseData['status'] == 1 && responseData['data'] != null) {
+        if (responseData['success'] == true && responseData['data'] != null) {
           final textbooksJson = responseData['data']['textbooks'] as List;
           return textbooksJson.map((json) => TextbookModel.fromJson(json)).toList();
         }
@@ -48,7 +48,7 @@ class TextbookService {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         
-        if (responseData['status'] == 1 && responseData['data'] != null) {
+        if (responseData['success'] == true && responseData['data'] != null) {
           return TextbookDetailModel.fromJson(responseData['data']);
         }
       }
@@ -71,7 +71,7 @@ class TextbookService {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         
-        if (responseData['status'] == 1 && responseData['data'] != null) {
+        if (responseData['success'] == true && responseData['data'] != null) {
           final subjectsJson = responseData['data']['subjects'] as List;
           return subjectsJson.map((json) => SubjectModel.fromJson(json)).toList();
         }

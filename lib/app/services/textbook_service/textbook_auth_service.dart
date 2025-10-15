@@ -5,9 +5,9 @@ import 'package:webinar/common/utils/constants.dart';
 import 'package:webinar/common/utils/http_handler.dart';
 
 class TextbookAuthService {
-  static const String _baseUrl = 'http://127.0.0.1:8000';
+  static const String _baseUrl = 'https://vertxlearning.com';
   static const String _apiPrefix = '/api/development';
-  static const String _apiKey = '1234';
+
 
   static Future<bool> login(String email, String password) async {
     try {
@@ -15,7 +15,6 @@ class TextbookAuthService {
         Uri.parse('$_baseUrl$_apiPrefix/auth/login'),
         headers: {
           'Accept': 'application/json',
-          'x-api-key': _apiKey,
           'Content-Type': 'application/json',
         },
         body: jsonEncode({
@@ -27,7 +26,7 @@ class TextbookAuthService {
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
         
-        if (responseData['status'] == 1 && responseData['data'] != null) {
+        if (responseData['success'] == true && responseData['data'] != null) {
           final token = responseData['data']['token'];
           
           // Save the token for future requests
@@ -66,7 +65,6 @@ class TextbookAuthService {
     return {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
-      'x-api-key': _apiKey,
       'Content-Type': 'application/json',
     };
   }
