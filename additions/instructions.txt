@@ -1,0 +1,17 @@
+In here you will find images that show the interface additions that are needed. Mainly its just adding a module for access to textbooks
+a directory has been created in lib\app\pages\textbook where these files can be created.
+
+An API doc is also present here for API connections
+
+1. Login:
+The login button for text has already been added to login screen, we just need to implement the login form to show when clicked. 
+The login parameters will be avalaible in the API docs in this directory
+
+2. Home:
+Create this interface but without the bottom nav bar - That wont be needed. . USE API doc for api requests and data also to check data formats
+
+3. Course:
+Create this interface but without the bottom nav bar - That wont be needed ( this page shows the selected course). USE API doc for api requests and data also to check data formats
+
+4. Book:
+This shows the book content. USE API doc for api requests and data also to check data formats

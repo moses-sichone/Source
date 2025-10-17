@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "853570366597",
+    "project_id": "vertx-b56bb",
+    "storage_bucket": "vertx-b56bb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853570366597:android:d4933ea94c8b471374cdec",
+        "android_client_info": {
+          "package_name": "com.vertxlearning.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrm8cxNJv2RchRsKG5rs2x2YWtLseVklo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
