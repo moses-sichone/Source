@@ -11,10 +11,7 @@ Color purpleLight() => const Color(0xffebebf8);
 Color appBarBg() => const Color(0xffEBEBF8);
 // Color purplePrimary() => const Color(0xff1267AE);
 Color purplePrimary() => const Color(0xff1d4f9f);
-<<<<<<< HEAD
 Color bluePrimary() => const Color(0xff1267AE);
-=======
->>>>>>> 300ef8f371d1837e2fcf1dac69a3aa58a3086832
 Color greyE5() => const Color(0xffE5E5E5);
 Color greyText() => const Color(0xff808080);
 Color lightGrey() => const Color(0xffD9D9D9);
@@ -50,15 +47,10 @@ Color greyB2 = const Color(0xffA9AEB2);
 Color greyA5 = const Color(0xffA5A5A5);
 Color greyCF = const Color(0xffCFCFCF);
 Color greyE7 = const Color(0xffE7E7E7);
-<<<<<<< HEAD
 Color greyF0 = const Color(0xffF0F0F0);
 Color greyF8 = const Color(0xffF8F8F8);
 Color greyFA = const Color(0xffFAFAFA);
 Color greyCC = const Color(0xffCCCCCC);
-=======
-Color greyF8 = const Color(0xffF8F8F8);
-Color greyFA = const Color(0xffFAFAFA);
->>>>>>> 300ef8f371d1837e2fcf1dac69a3aa58a3086832
 LinearGradient greyGradint = LinearGradient(
   colors: [
     Colors.black.withOpacity(.8),

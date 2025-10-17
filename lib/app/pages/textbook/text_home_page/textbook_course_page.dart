@@ -26,7 +26,9 @@ class _TextbookCoursePageState extends State<TextbookCoursePage> {
   @override
   void initState() {
     super.initState();
-    _getData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _getData();
+    });
   }
 
   Future<void> _getData() async {
@@ -57,7 +59,13 @@ class _TextbookCoursePageState extends State<TextbookCoursePage> {
         backgroundColor: backgroundWhite(),
         appBar: AppBar(
           title: const Text('Textbook'),
-          backgroundColor: purplePrimary(),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          titleTextStyle: const TextStyle(
+            color: Color(0xFF333333),
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+          ),
         ),
         body: const Center(
           child: Text('Textbook not found'),
@@ -73,15 +81,12 @@ class _TextbookCoursePageState extends State<TextbookCoursePage> {
           SliverAppBar(
             expandedHeight: 250,
             pinned: true,
-            backgroundColor: purplePrimary(),
+            backgroundColor: Colors.white,
+            elevation: 0,
             flexibleSpace: FlexibleSpaceBar(
               background: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [purplePrimary(), Colors.purple],
-                  ),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
                 ),
                 child: Stack(
                   children: [
@@ -150,7 +155,11 @@ class _TextbookCoursePageState extends State<TextbookCoursePage> {
             ),
             title: Text(
               textbook!.title,
-              style: style18Bold().copyWith(color: Colors.white),
+              style: const TextStyle(
+                color: Color(0xFF333333),
+                fontSize: 18,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
 
@@ -233,12 +242,12 @@ class _TextbookCoursePageState extends State<TextbookCoursePage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: purplePrimary().withOpacity(0.1),
+                    color: green77().withOpacity(0.1),
                     borderRadius: borderRadius(radius: 20),
                   ),
                   child: Text(
                     '\$${textbook!.price}',
-                    style: style12Medium().copyWith(color: purplePrimary()),
+                    style: style12Medium().copyWith(color: green77()),
                   ),
                 ),
               ],
@@ -248,12 +257,12 @@ class _TextbookCoursePageState extends State<TextbookCoursePage> {
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: bluePrimary().withOpacity(0.1),
+                    color: greyE5().withOpacity(0.5),
                     borderRadius: borderRadius(radius: 20),
                   ),
                   child: Text(
                     '${textbookDetail!.chapters.length} Chapters',
-                    style: style12Medium().copyWith(color: bluePrimary()),
+                    style: style12Medium().copyWith(color: greyText()),
                   ),
                 ),
               ],
@@ -316,13 +325,13 @@ class _TextbookCoursePageState extends State<TextbookCoursePage> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: purplePrimary().withOpacity(0.1),
+                color: greyF0(),
                 borderRadius: borderRadius(radius: 10),
               ),
               child: Center(
                 child: Text(
                   '$chapterNumber',
-                  style: style16Bold().copyWith(color: purplePrimary()),
+                  style: style16Bold().copyWith(color: grey33),
                 ),
               ),
             ),
@@ -382,12 +391,12 @@ class _TextbookCoursePageState extends State<TextbookCoursePage> {
         Icon(
           icon,
           size: 14,
-          color: purplePrimary(),
+          color: grey5E,
         ),
         space(0, width: 4),
         Text(
           label,
-          style: style10Regular().copyWith(color: purplePrimary()),
+          style: style10Regular().copyWith(color: grey5E),
         ),
       ],
     );
