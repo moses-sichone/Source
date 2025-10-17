@@ -4,6 +4,8 @@ import 'package:webinar/common/data/app_data.dart';
 import 'package:webinar/common/utils/constants.dart';
 import 'package:webinar/common/utils/http_handler.dart';
 
+import '../../../utils/util.dart';
+
 class TextbookAuthService {
   static const String _baseUrl = 'https://vertxlearning.com';
   static const String _apiPrefix = '/api/development';
@@ -11,17 +13,23 @@ class TextbookAuthService {
 
   static Future<bool> login(String email, String password) async {
     try {
-      final response = await http.post(
-        Uri.parse('$_baseUrl$_apiPrefix/auth/login'),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'username': email,
-          'password': password,
-        }),
-      );
+      const url = '$_baseUrl$_apiPrefix/login';
+      final headers = {
+        'Accept': 'application/json',
+        'x-api-key': apiKey,
+        'Content-Type': 'application/json', // exact header, no charset
+      };
+
+      final body = {
+        'username': email,
+        'password': password,
+      };
+
+      final response = await postRawJson(url, body, headers: headers);
+
+      print(response.request?.headers);
+      print(response.body);
+
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -64,6 +72,7 @@ class TextbookAuthService {
     final token = await getToken();
     return {
       'Accept': 'application/json',
+      'x-api-key': apiKey,
       'Authorization': 'Bearer $token',
       'Content-Type': 'application/json',
     };

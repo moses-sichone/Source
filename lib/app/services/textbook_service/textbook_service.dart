@@ -3,12 +3,15 @@ import 'package:http/http.dart' as http;
 import 'package:webinar/app/models/textbook_model.dart';
 import 'package:webinar/app/services/textbook_service/textbook_auth_service.dart';
 
+import '../../../utils/util.dart';
+
 class TextbookService {
   static const String _baseUrl = 'https://vertxlearning.com';
   static const String _apiPrefix = '/api/development';
 
   static Future<List<TextbookModel>> getTextbooks({int? subjectId}) async {
     try {
+      print('getTextbooks');
       final headers = await TextbookAuthService.getHeaders();
       String url = '$_baseUrl$_apiPrefix/textbook/students';
       
@@ -16,10 +19,11 @@ class TextbookService {
         url += '?subject_id=$subjectId';
       }
 
-      final response = await http.get(
-        Uri.parse(url),
+      final response = await getRawJson(
+        Uri.parse(url).toString(),
         headers: headers,
       );
+      print(response.body);
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -39,9 +43,10 @@ class TextbookService {
 
   static Future<TextbookDetailModel?> getTextbookChapters(int textbookId) async {
     try {
+      print('getTextbookChapters');
       final headers = await TextbookAuthService.getHeaders();
-      final response = await http.get(
-        Uri.parse('$_baseUrl$_apiPrefix/textbook/chapters?textbook_id=$textbookId'),
+      final response = await getRawJson(
+        Uri.parse('$_baseUrl$_apiPrefix/textbook/students/chapters?textbook_id=$textbookId').toString(),
         headers: headers,
       );
 
@@ -62,9 +67,10 @@ class TextbookService {
 
   static Future<List<SubjectModel>> getSubjects() async {
     try {
+      print('getSubjects');
       final headers = await TextbookAuthService.getHeaders();
-      final response = await http.get(
-        Uri.parse('$_baseUrl$_apiPrefix/textbook/subjects'),
+      final response = await getRawJson(
+        Uri.parse('$_baseUrl$_apiPrefix/textbook/students/subjects').toString(),
         headers: headers,
       );
 
