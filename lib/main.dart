@@ -65,13 +65,10 @@ import 'app/pages/main_page/home_page/search_page/result_search_page.dart';
 import 'app/pages/main_page/home_page/search_page/suggested_search_page.dart';
 import 'app/pages/main_page/home_page/subscription_page/subscription_page.dart';
 import 'app/pages/textbook/textbook_main_page.dart';
-<<<<<<< HEAD
 import 'app/pages/textbook/textbook_login_page.dart';
 import 'app/pages/textbook/text_home_page/textbook_home_page.dart';
 import 'app/pages/textbook/text_home_page/textbook_course_page.dart';
 import 'app/pages/textbook/text_home_page/textbook_book_page.dart';
-=======
->>>>>>> 300ef8f371d1837e2fcf1dac69a3aa58a3086832
 import 'app/providers/app_language_provider.dart';
 import 'app/providers/filter_course_provider.dart';
 import 'app/providers/page_provider.dart';
@@ -166,13 +163,10 @@ class MyApp extends StatelessWidget {
         initialRoute: SplashPage.pageName,
         routes: {
           TextBookMainPage.pageName : (context) => const TextBookMainPage(),
-<<<<<<< HEAD
           TextbookLoginPage.pageName : (context) => const TextbookLoginPage(),
           TextbookHomePage.pageName : (context) => const TextbookHomePage(),
           TextbookCoursePage.pageName : (context) => const TextbookCoursePage(),
           TextbookBookPage.pageName : (context) => const TextbookBookPage(),
-=======
->>>>>>> 300ef8f371d1837e2fcf1dac69a3aa58a3086832
           MainPage.pageName : (context) => const MainPage(),
           SplashPage.pageName : (context) => const SplashPage(),
           IntroPage.pageName : (context) => const IntroPage(),

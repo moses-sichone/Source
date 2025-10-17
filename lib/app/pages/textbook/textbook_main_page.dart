@@ -7,11 +7,7 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-import 'package:webinar/app/pages/textbook/text_home_page/textbook_home_page.dart';
-=======
 import 'package:webinar/app/pages/textbook/text_home_page/home_page.dart';
->>>>>>> 300ef8f371d1837e2fcf1dac69a3aa58a3086832
 import 'package:webinar/app/providers/drawer_provider.dart';
 import 'package:webinar/app/providers/page_provider.dart';
 import 'package:webinar/app/services/guest_service/course_service.dart';

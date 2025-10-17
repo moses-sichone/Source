@@ -58,8 +58,7 @@ class AppData {
 
 
 
-<<<<<<< HEAD
-  static Future saveTextbookToken(String data) async {
+static Future saveTextbookToken(String data) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return await prefs.setString('textbook_token', data);
   }
@@ -69,9 +68,6 @@ class AppData {
     String data = prefs.getString('textbook_token') ?? '';
     return data;
   }
-
-=======
->>>>>>> 300ef8f371d1837e2fcf1dac69a3aa58a3086832
   // static String appName = 'Webinar';
   static bool canShowFinalizeSheet = true;
 }

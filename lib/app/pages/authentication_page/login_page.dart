@@ -29,11 +29,8 @@ import '../../../config/colors.dart';
 import '../../../config/styles.dart';
 import '../../widgets/authentication_widget/country_code_widget/code_country.dart';
 import '../container_bg.dart';
-<<<<<<< HEAD
 import '../textbook/textbook_login_page.dart';
-=======
 import '../textbook/textbook_main_page.dart';
->>>>>>> 300ef8f371d1837e2fcf1dac69a3aa58a3086832
 
 class LoginPage extends StatefulWidget {
   static const String pageName = '/login';
@@ -406,13 +403,7 @@ class _LoginPageState extends State<LoginPage> {
                   space(10),
                   // login with textbook
                   socialWidget(AppAssets.facebookSvg, 'Log in for textbook', width: getSize().width, () async {
-<<<<<<< HEAD
                     nextRoute(TextbookLoginPage.pageName);
-=======
-                    // try{
-                    nextRoute(TextBookMainPage.pageName,isClearBackRoutes: true);
-                    // }catch(e){}
->>>>>>> 300ef8f371d1837e2fcf1dac69a3aa58a3086832
                   }),
 
 
