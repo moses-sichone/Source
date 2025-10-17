@@ -7,12 +7,9 @@ import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:glass_kit/glass_kit.dart';
 import 'package:provider/provider.dart';
-import 'package:webinar/app/pages/textbook/text_home_page/home_page.dart';
+import 'package:webinar/app/pages/textbook/text_home_page/textbook_home_page.dart';
 import 'package:webinar/app/providers/drawer_provider.dart';
 import 'package:webinar/app/providers/page_provider.dart';
-import 'package:webinar/app/services/guest_service/course_service.dart';
-import 'package:webinar/app/services/user_service/cart_service.dart';
-import 'package:webinar/app/services/user_service/rewards_service.dart';
 import 'package:webinar/app/services/user_service/user_service.dart';
 import 'package:webinar/app/widgets/main_widget/main_drawer.dart';
 import 'package:webinar/app/widgets/main_widget/main_widget.dart';
@@ -63,10 +60,10 @@ class _TextBookMainPageState extends State<TextBookMainPage> {
       addListener();
 
       FirebaseMessaging.instance.getToken().then((value) {
-        try{
+        try {
           print('token : ${value}');
           UserService.sendFirebaseToken(value!);
-        }catch(_){}
+        } catch(_){}
       });
     });
 
@@ -86,10 +83,10 @@ class _TextBookMainPageState extends State<TextBookMainPage> {
 
   addListener() {
     drawerController.addListener(() { 
-      if(locator<DrawerProvider>().isOpenDrawer != drawerController.value.visible){
+      if(locator<DrawerProvider>().isOpenDrawer != drawerController.value.visible) {
 
         Future.delayed(const Duration(milliseconds: 300)).then((value) {          
-          if(mounted){
+          if(mounted) {
             locator<DrawerProvider>().setDrawerState(drawerController.value.visible);
           }
         });
@@ -103,8 +100,8 @@ class _TextBookMainPageState extends State<TextBookMainPage> {
     bottomNavHeight = 90;
     
 
-    if( !kIsWeb ){
-      if(Platform.isIOS){
+    if ( !kIsWeb ) {
+      if (Platform.isIOS) {
 
         SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
           SystemUiOverlay.top
@@ -114,10 +111,10 @@ class _TextBookMainPageState extends State<TextBookMainPage> {
 
     return PopScope(
       canPop: false,
-      onPopInvoked: (v){
-        if(locator<PageProvider>().page == PageNames.home){
+      onPopInvoked: (v) {
+        if(locator<PageProvider>().page == PageNames.home) {
           MainWidget.showExitDialog();
-        }else{
+        } else {
           locator<PageProvider>().setPage(PageNames.home);
         }
       },
@@ -125,9 +122,9 @@ class _TextBookMainPageState extends State<TextBookMainPage> {
         builder: (context, languageProvider, _) {
           
           drawerController = AdvancedDrawerController();
-          if(locator<DrawerProvider>().isOpenDrawer){
+          if (locator<DrawerProvider>().isOpenDrawer) {
             drawerController.showDrawer();
-          }else{
+          } else {
             drawerController.hideDrawer();
           }
           
@@ -165,14 +162,13 @@ class _TextBookMainPageState extends State<TextBookMainPage> {
                 ),
       
                 rtlOpening: locator<AppLanguage>().isRtl(),
-
                   backdrop: glassContainerGB(child: Container()),
                 child: Consumer<PageProvider>(
                   builder: (context, pageProvider, _) {
                     return SafeArea(
                       bottom: !kIsWeb && Platform.isAndroid,
                       top: false,
-                      child: Scaffold(
+                      child: const Scaffold(
                         backgroundColor: Colors.transparent,
                         resizeToAvoidBottomInset: false,
                         extendBody: true,
@@ -192,7 +188,7 @@ class _TextBookMainPageState extends State<TextBookMainPage> {
   }
 }
 
-class BottomNavClipper extends CustomClipper<Path>{
+class BottomNavClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     

@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:webinar/common/data/app_data.dart';
 import 'package:webinar/common/utils/utils.dart';
 
+import '../../../utils/util.dart';
+
 class TextbookAuthService {
   static const String _baseUrl = 'https://vertxlearning.com';
   static const String _apiPrefix = '/api/development';
@@ -10,12 +12,20 @@ class TextbookAuthService {
   static Future<bool> login(String email, String password) async {
     try {
       final response = await postRawJson(
-        '$_baseUrl$_apiPrefix/auth/login',
+        '$_baseUrl$_apiPrefix/login',
+        headers: {
+          'Accept': 'application/json',
+          'x-api-key': apiKey,
+          'Content-Type': 'application/json',
+        },
         {
           'username': email,
           'password': password,
         },
       );
+
+      print(response.request?.headers);
+      print(response.body);
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -59,6 +69,7 @@ class TextbookAuthService {
     return {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
+      'x-api-key': apiKey,
       'Content-Type': 'application/json',
     };
   }

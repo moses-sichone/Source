@@ -1,7 +1,12 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:glass_kit/glass_kit.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:webinar/app/pages/textbook/text_home_page/search_page/suggested_search_page.dart';
 import 'package:webinar/app/providers/drawer_provider.dart';
 import 'package:webinar/app/models/textbook_model.dart';
 import 'package:webinar/app/services/textbook_service/textbook_service.dart';
@@ -12,8 +17,10 @@ import 'package:webinar/common/utils/app_text.dart';
 import 'package:webinar/config/assets.dart';
 import 'package:webinar/config/colors.dart';
 import 'package:webinar/config/styles.dart';
+import '../../../../common/utils/object_instance.dart';
 import '../../../../locator.dart';
 import '../../../providers/app_language_provider.dart';
+import '../../../widgets/main_widget/main_widget.dart';
 
 class TextbookHomePage extends StatefulWidget {
   static const String pageName = '/textbook_home';
@@ -23,9 +30,14 @@ class TextbookHomePage extends StatefulWidget {
   State<TextbookHomePage> createState() => _TextbookHomePageState();
 }
 
-class _TextbookHomePageState extends State<TextbookHomePage> {
+class _TextbookHomePageState extends State<TextbookHomePage> with TickerProviderStateMixin {
   TextEditingController searchController = TextEditingController();
   FocusNode searchNode = FocusNode();
+
+  late AnimationController appBarController;
+  late Animation<double> appBarAnimation;
+
+  double appBarHeight = 190;
 
   bool isLoadingTextbooks = false;
   List<TextbookModel> textbooks = [];
@@ -37,7 +49,13 @@ class _TextbookHomePageState extends State<TextbookHomePage> {
   void initState() {
     super.initState();
     _getData();
-    
+
+    appBarController = AnimationController(vsync: this,duration: const Duration(milliseconds: 200));
+    appBarAnimation = Tween<double>(
+      begin: 140 + MediaQuery.of(navigatorKey.currentContext!).viewPadding.top,
+      end: 70 + MediaQuery.of(navigatorKey.currentContext!).viewPadding.top,
+    ).animate(appBarController);
+
     searchController.addListener(() {
       _filterTextbooks();
     });
@@ -58,7 +76,7 @@ class _TextbookHomePageState extends State<TextbookHomePage> {
     try {
       final textbooksData = await TextbookService.getTextbooks();
       final subjectsData = await TextbookService.getSubjects();
-      
+
       setState(() {
         textbooks = textbooksData;
         filteredTextbooks = textbooksData;
@@ -74,7 +92,7 @@ class _TextbookHomePageState extends State<TextbookHomePage> {
 
   void _filterTextbooks() {
     final query = searchController.text.toLowerCase();
-    
+
     setState(() {
       if (query.isEmpty) {
         filteredTextbooks = textbooks;
@@ -114,7 +132,9 @@ class _TextbookHomePageState extends State<TextbookHomePage> {
                 body: Column(
                   children: [
                     // App Bar
-                    _buildAppBar(),
+                    SizedBox(
+                        height: appBarHeight,
+                        child: _buildAppBar()),
 
                     // Body
                     Expanded(
@@ -150,49 +170,145 @@ class _TextbookHomePageState extends State<TextbookHomePage> {
   }
 
   Widget _buildAppBar() {
-    return Container(
-      width: getSize().width,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: purplePrimary(),
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          space(10),
-          Text(
-            'My Textbooks',
-            style: style24Bold().copyWith(color: Colors.white),
+    return AnimatedBuilder(
+        animation: appBarAnimation,
+        builder: (context, child) {
+
+          return GlassContainer.clearGlass(
+          blur: 3,
+          width: getSize().width,
+          margin: const EdgeInsets.only(left: 10, right: 10, top: 10),
+          borderRadius: const BorderRadius.vertical(
+              top: Radius.circular(40),
+              bottom: Radius.circular(40)
           ),
-          space(8),
-          Text(
-            'Access your digital learning materials',
-            style: style14Regular().copyWith(color: Colors.white70),
-          ),
-          space(20),
-          
-          // Search Bar
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: borderRadius(),
+          color: appBarBg().withOpacity(0.8),
+          child: Padding(
+            padding: padding(),
+            child: Column(
+              children: [
+                // app bar
+                Container(
+                  width: getSize().width,
+                  margin: EdgeInsets.only(top: (!kIsWeb && Platform.isIOS) ? MediaQuery.of(context).viewPadding.top + 6 : MediaQuery.of(context).viewPadding.top + 12),
+                  child: Row(
+                    children: [
+
+                      // menu
+                      GestureDetector(
+                        onTap: () async {
+
+                          drawerController.showDrawer();
+
+                        },
+                        behavior: HitTestBehavior.opaque,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle
+                          ),
+                          width: 40,
+                          height: 40,
+                          margin: const EdgeInsets.only(right: 5),
+                          alignment: Alignment.center,
+                          child: Transform(
+                            alignment: Alignment.center,
+                            transform: Matrix4.identity()..scale(-1.0, 1.0),
+                            child: SvgPicture.asset(AppAssets.menuSvg, color: Colors.black,),),
+                        ),
+                      ),
+                      space(0,width: 4),
+                      // title
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+
+                            // username
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Container(
+                                  constraints: BoxConstraints(
+                                      maxWidth: getSize().width * .4,
+                                      minWidth: getSize().width * .1
+                                  ),
+                                  child: Text(appText.webinar,
+                                    style: TextStyle(color: greyText(), fontWeight: FontWeight.w400),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+
+                                // if(token.isNotEmpty)...{
+                                //   SvgPicture.asset(AppAssets.hiSvg),
+                                // }
+                              ],
+                            ),
+                            const SizedBox(height: 2,),
+                            Text('John Doe',
+                              style: const TextStyle(color: Colors.black, height: 1, fontWeight: FontWeight.w600),
+                            ),
+
+                          ],
+                        ),
+                      ),
+
+                      // basket and notification
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+
+
+                          // notification
+                          MainWidget.menuButton(
+                              'assets/image/svg/Bell.svg',
+                              false,
+                              //userProvider.notification.where((element) => element.status == 'unread').isNotEmpty,
+                              Colors.black,
+                              Colors.white,
+                                  (){
+                                // nextRoute(NotificationPage.pageName);
+                              }
+                          )
+                        ],
+                      )
+
+
+                    ],
+                  ),
+                ),
+
+                const Spacer(),
+
+                AnimatedCrossFade(
+                  firstChild: Column(
+                    children: [
+
+                      input(searchController, searchNode, appText.searchInputDesc, iconPathLeft: AppAssets.searchSvg, isReadOnly: true, onTap: (){
+                        nextRoute(SuggestedSearchPage.pageName);
+                      }),
+                      space(16)
+                    ],
+                  ),
+                  secondChild: SizedBox(width: getSize().width),
+
+                  crossFadeState: (appBarAnimation.value < (140 + MediaQuery.of(navigatorKey.currentContext!).viewPadding.top))
+                      ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+
+                  duration: const Duration(milliseconds: 200),
+                ),
+                space(2)
+              ],
             ),
-            child: input(
-              searchController,
-              searchNode,
-              'Search textbooks...',
-              iconPathLeft: AppAssets.searchSvg,
-              leftIconSize: 14,
-            ),
           ),
-        ],
-      ),
+        );
+      }
     );
   }
+
 
   Widget _buildSubjectFilter() {
     return Column(
@@ -226,7 +342,7 @@ class _TextbookHomePageState extends State<TextbookHomePage> {
                   ),
                 ),
               ),
-              
+
               // Subject List
               ...subjects.map((subject) {
                 return GestureDetector(
@@ -342,7 +458,7 @@ class _TextbookHomePageState extends State<TextbookHomePage> {
                 ),
               ),
             ),
-            
+
             // Book Info
             Expanded(
               flex: 2,

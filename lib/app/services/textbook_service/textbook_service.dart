@@ -3,6 +3,8 @@ import 'package:webinar/app/models/textbook_model.dart';
 import 'package:webinar/app/services/textbook_service/textbook_auth_service.dart';
 import 'package:webinar/common/utils/utils.dart';
 
+import '../../../utils/util.dart';
+
 class TextbookService {
   static const String _baseUrl = 'https://vertxlearning.com';
   static const String _apiPrefix = '/api/development';
@@ -10,7 +12,7 @@ class TextbookService {
   static Future<List<TextbookModel>> getTextbooks({int? subjectId}) async {
     try {
       final headers = await TextbookAuthService.getHeaders();
-      String url = '$_baseUrl$_apiPrefix/textbooks';
+      String url = '$_baseUrl$_apiPrefix/textbook/students';
       
       if (subjectId != null) {
         url += '?subject_id=$subjectId';
@@ -37,7 +39,7 @@ class TextbookService {
   static Future<TextbookDetailModel?> getTextbookChapters(int textbookId) async {
     try {
       final headers = await TextbookAuthService.getHeaders();
-      final response = await getRawJson('$_baseUrl$_apiPrefix/textbooks/$textbookId/chapters', headers: headers);
+      final response = await getRawJson('$_baseUrl$_apiPrefix/textbook/students/chapters?textbook_id=$textbookId', headers: headers);
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -57,7 +59,7 @@ class TextbookService {
   static Future<List<SubjectModel>> getSubjects() async {
     try {
       final headers = await TextbookAuthService.getHeaders();
-      final response = await getRawJson('$_baseUrl$_apiPrefix/subjects', headers: headers);
+      final response = await getRawJson('$_baseUrl$_apiPrefix/textbook/students/subjects', headers: headers);
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
