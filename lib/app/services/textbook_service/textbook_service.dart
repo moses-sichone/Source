@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:webinar/app/models/textbook_model.dart';
 import 'package:webinar/app/services/textbook_service/textbook_auth_service.dart';
+import 'package:webinar/common/utils/utils.dart';
 
 class TextbookService {
   static const String _baseUrl = 'https://vertxlearning.com';
@@ -10,16 +10,13 @@ class TextbookService {
   static Future<List<TextbookModel>> getTextbooks({int? subjectId}) async {
     try {
       final headers = await TextbookAuthService.getHeaders();
-      String url = '$_baseUrl$_apiPrefix/textbook/students';
+      String url = '$_baseUrl$_apiPrefix/textbooks';
       
       if (subjectId != null) {
         url += '?subject_id=$subjectId';
       }
 
-      final response = await http.get(
-        Uri.parse(url),
-        headers: headers,
-      );
+      final response = await getRawJson(url, headers: headers);
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -40,10 +37,7 @@ class TextbookService {
   static Future<TextbookDetailModel?> getTextbookChapters(int textbookId) async {
     try {
       final headers = await TextbookAuthService.getHeaders();
-      final response = await http.get(
-        Uri.parse('$_baseUrl$_apiPrefix/textbook/chapters?textbook_id=$textbookId'),
-        headers: headers,
-      );
+      final response = await getRawJson('$_baseUrl$_apiPrefix/textbooks/$textbookId/chapters', headers: headers);
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);
@@ -63,10 +57,7 @@ class TextbookService {
   static Future<List<SubjectModel>> getSubjects() async {
     try {
       final headers = await TextbookAuthService.getHeaders();
-      final response = await http.get(
-        Uri.parse('$_baseUrl$_apiPrefix/textbook/subjects'),
-        headers: headers,
-      );
+      final response = await getRawJson('$_baseUrl$_apiPrefix/subjects', headers: headers);
 
       if (response.statusCode == 200) {
         final responseData = jsonDecode(response.body);

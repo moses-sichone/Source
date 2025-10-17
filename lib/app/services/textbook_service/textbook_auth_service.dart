@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:webinar/common/data/app_data.dart';
-import 'package:webinar/common/utils/constants.dart';
-import 'package:webinar/common/utils/http_handler.dart';
+import 'package:webinar/common/utils/utils.dart';
 
 class TextbookAuthService {
   static const String _baseUrl = 'https://vertxlearning.com';
@@ -11,16 +9,12 @@ class TextbookAuthService {
 
   static Future<bool> login(String email, String password) async {
     try {
-      final response = await http.post(
-        Uri.parse('$_baseUrl$_apiPrefix/auth/login'),
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
+      final response = await postRawJson(
+        '$_baseUrl$_apiPrefix/auth/login',
+        {
           'username': email,
           'password': password,
-        }),
+        },
       );
 
       if (response.statusCode == 200) {
